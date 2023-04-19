@@ -1,0 +1,14 @@
+.outer-circle,.inner-circle {
+  height: 100%;
+  border-radius: 50%;
+}
+
+.outer-circle {
+  border: 2px solid white;
+  transform: scale(100%);
+}
+
+.inner-circle {
+  background-color: magenta;
+  transform: scale(80%);
+}

@@ -1,9 +1,43 @@
-
-<div class="selector-row">
-  <mat-form-field class="selector"><mat-label>Inhale duration (sec)</mat-label><input class="right"matInput type="number"></mat-form-field>
-  <mat-form-field class="selector"><mat-label>Hold inhale for (sec)</mat-label><input class="right"matInput type="number"></mat-form-field>
-  <mat-form-field class="selector"><mat-label>Exhale duration (sec)</mat-label><input class="right"matInput type="number"></mat-form-field>
-  <mat-form-field class="selector"><mat-label>Hold exhale for (sec)</mat-label><input class="right"matInput type="number"></mat-form-field>
-</div>
-<div class="selector-row"><button mat-raised-button color="primary">Start exercise</button></div>
-
+<form [formGroup]="breathSelectorForm" (ngSubmit)="onSubmit()">
+  <div class="selector-row">
+    <mat-form-field class="selector">
+      <mat-label>Inhale duration (sec)</mat-label>
+      <input
+        formControlName="inhaleTime"
+        class="right"
+        matInput
+        type="number"
+      />
+    </mat-form-field>
+    <mat-form-field class="selector">
+      <mat-label>Hold inhale for (sec)</mat-label>
+      <input
+        formControlName="inhaleHoldTime"
+        class="right"
+        matInput
+        type="number"
+      />
+    </mat-form-field>
+    <mat-form-field class="selector">
+      <mat-label>Exhale duration (sec)</mat-label>
+      <input
+        formControlName="exhaleTime"
+        class="right"
+        matInput
+        type="number"
+      />
+    </mat-form-field>
+    <mat-form-field class="selector">
+      <mat-label>Hold exhale for (sec)</mat-label>
+      <input
+        formControlName="exhaleHoldTime"
+        class="right"
+        matInput
+        type="number"
+      />
+    </mat-form-field>
+  </div>
+  <div class="selector-row">
+    <button mat-raised-button color="primary">Start exercise</button>
+  </div>
+</form>

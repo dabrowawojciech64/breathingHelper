@@ -1,0 +1,15 @@
+.selector-row {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+
+.selector-row  mat-form-field:not(:first-child) {
+  margin-left: 10px;
+}
+
+.right {
+  text-align: right;
+}

@@ -1,10 +1,13 @@
 .outer-circle,.inner-circle {
   height: 100%;
   border-radius: 50%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 .outer-circle {
-  border: 5px solid white;
+  border: 10px solid white;
   // transform: scale(100%);
 }
 

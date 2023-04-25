@@ -1,5 +1,6 @@
-
 <div class="container">
-  <app-breather></app-breather>
-  <app-breath-selector></app-breath-selector>
+  <app-breather [breathOption]="selectedBreath"></app-breather>
+  <app-breath-selector
+    (selectedBreath)="selectBreath($event)"
+  ></app-breath-selector>
 </div>

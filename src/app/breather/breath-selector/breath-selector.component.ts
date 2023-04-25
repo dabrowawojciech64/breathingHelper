@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { BreathParameters } from './../breath-parameters.type';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,14 +8,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./breath-selector.component.scss'],
 })
 export class BreathSelectorComponent {
-  breathSelectorForm = new FormGroup({
+  @Output() selectedBreath = new EventEmitter<BreathParameters>();
+  public breathSelectorForm = new FormGroup({
     inhaleTime: new FormControl(null, Validators.required),
     inhaleHoldTime: new FormControl(null),
     exhaleTime: new FormControl(null, Validators.required),
     exhaleHoldTime: new FormControl(null),
   });
+  public selected: boolean = false;
 
   public onSubmit() {
-    console.warn(this.breathSelectorForm.value);
+    const selectedBreath = this.breathSelectorForm
+      .value as unknown as BreathParameters;
+    console.warn(selectedBreath);
+    this.selectedBreath.emit(selectedBreath);
+    this.selected = true;
   }
 }

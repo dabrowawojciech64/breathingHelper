@@ -38,6 +38,13 @@
     </mat-form-field>
   </div>
   <div class="selector-row">
-    <button mat-raised-button color="primary">Start exercise</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!breathSelectorForm.valid"
+    >
+      {{ selected ? "Change exercise" : "Start exercise" }}
+    </button>
   </div>
 </form>

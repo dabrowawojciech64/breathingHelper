@@ -7,7 +7,8 @@ import {
   group,
   query,
 } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { BreathParameters } from '../breath-parameters.type';
 
 @Component({
   selector: 'app-breather',
@@ -36,11 +37,11 @@ import { Component, OnInit } from '@angular/core';
 
       transition('empty => full', [
         group([
-          animate('{{inhaleTime}}ms {{exhaleHoldTime}}ms ease-in-out'),
+          animate('{{inhaleTime}}s {{exhaleHoldTime}}s ease-in-out'),
           query(
             '.inner-circle',
             animate(
-              '{{inhaleTime}}ms {{exhaleHoldTime}}ms ease-in-out',
+              '{{inhaleTime}}s {{exhaleHoldTime}}s ease-in-out',
               style({ transform: 'scale(100%)' })
             ),
             { optional: true }
@@ -50,11 +51,11 @@ import { Component, OnInit } from '@angular/core';
 
       transition('full => empty', [
         group([
-          animate('{{exhaleTime}}ms {{inhaleHoldTime}}ms ease-in-out'),
+          animate('{{exhaleTime}}s {{inhaleHoldTime}}s ease-in-out'),
           query(
             '.inner-circle',
             animate(
-              '{{exhaleTime}}ms {{inhaleHoldTime}}ms ease-in-out',
+              '{{exhaleTime}}s {{inhaleHoldTime}}s ease-in-out',
               style({ transform: 'scale(50%)' })
             ),
             { optional: true }
@@ -65,6 +66,7 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class BreatherComponent implements OnInit {
+  @Input('breathOption') breathOption?: BreathParameters;
   public isInhaling: boolean = false;
   public inhaleTime: number = 4000;
   public inhaleHoldTime: number = 4000;

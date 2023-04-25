@@ -1,17 +1,20 @@
-<div
-  class="outer-circle"
-  [@outerCircleAnimation]="{
-    value: isInhaling ? 'full' : 'empty',
-    params: {
-      inhaleTime: inhaleTime,
-      inhaleHoldTime: inhaleHoldTime,
-      exhaleTime: exhaleTime,
-      exhaleHoldTime: exhaleHoldTime,
-    }
-  }"
-  (@outerCircleAnimation.done)="toggleState($event)"
->
+<ng-container *ngIf="breathOption">
   <div
-    class="inner-circle"
-  ></div>
-</div>
+    class="outer-circle"
+    [@outerCircleAnimation]="{
+      value: isInhaling ? 'full' : 'empty',
+      params: {
+        inhaleTime: breathOption.inhaleTime,
+        inhaleHoldTime: breathOption.inhaleHoldTime?breathOption.inhaleHoldTime:0,
+        exhaleTime: breathOption.exhaleTime,
+        exhaleHoldTime: breathOption.exhaleHoldTime?breathOption.exhaleHoldTime:0,
+      }
+    }"
+    (@outerCircleAnimation.done)="toggleState($event)"
+  >
+    <div class="inner-circle"></div>
+  </div>
+</ng-container>
+<ng-container *ngIf="!breathOption">
+  <div class="center-text"><h1>Select the breathing exercise</h1></div>
+</ng-container>

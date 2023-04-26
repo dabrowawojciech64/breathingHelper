@@ -1,6 +1,7 @@
 import { BreathParameters } from './../breath-parameters.type';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { breathOptions } from './breath-options';
 
 @Component({
   selector: 'app-breath-selector',
@@ -9,7 +10,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class BreathSelectorComponent {
   @Output() selectedBreath = new EventEmitter<BreathParameters>();
-
   public breathSelectorForm = new FormGroup({
     inhaleTime: new FormControl(null, Validators.required),
     inhaleHoldTime: new FormControl(null),
@@ -17,6 +17,7 @@ export class BreathSelectorComponent {
     exhaleHoldTime: new FormControl(null),
   });
   public selected: boolean = false;
+  public options = breathOptions;
 
   public onBlur(event: any) {
     if (!event.target.value) {
@@ -30,5 +31,11 @@ export class BreathSelectorComponent {
       .value as unknown as BreathParameters;
     this.selectedBreath.emit(selectedBreath);
     this.selected = true;
+  }
+
+  public onSelect(event: any) {
+    event.inhaleHoldTime = event.inhaleHoldTime ? event.inhaleHoldTime : null;
+    event.exhaleHoldTime = event.exhaleHoldTime ? event.exhaleHoldTime : null;
+    this.breathSelectorForm.setValue(event);
   }
 }

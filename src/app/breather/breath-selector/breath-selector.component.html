@@ -1,7 +1,18 @@
 <form [formGroup]="breathSelectorForm" (ngSubmit)="onSubmit()">
-  <div class="selector-row"></div>
   <div class="selector-row">
     <mat-form-field class="selector">
+      <mat-select
+        (valueChange)="onSelect($event)"
+        [placeholder]="'Predefined breathing exercises'"
+      >
+        <mat-option *ngFor="let option of options" [value]="option.value">
+          {{ option.name }}
+        </mat-option>
+      </mat-select></mat-form-field
+    >
+  </div>
+  <div class="selector-row">
+    <mat-form-field>
       <mat-label>Inhale duration (sec)</mat-label>
       <input
         formControlName="inhaleTime"
@@ -13,7 +24,7 @@
         (blur)="onBlur($event)"
       />
     </mat-form-field>
-    <mat-form-field class="selector">
+    <mat-form-field>
       <mat-label>Hold inhale for (sec)</mat-label>
       <input
         formControlName="inhaleHoldTime"
@@ -24,7 +35,7 @@
         (blur)="onBlur($event)"
       />
     </mat-form-field>
-    <mat-form-field class="selector">
+    <mat-form-field>
       <mat-label>Exhale duration (sec)</mat-label>
       <input
         formControlName="exhaleTime"
@@ -36,7 +47,7 @@
         (blur)="onBlur($event)"
       />
     </mat-form-field>
-    <mat-form-field class="selector">
+    <mat-form-field>
       <mat-label>Hold exhale for (sec)</mat-label>
       <input
         formControlName="exhaleHoldTime"

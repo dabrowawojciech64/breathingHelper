@@ -1,4 +1,5 @@
 <form [formGroup]="breathSelectorForm" (ngSubmit)="onSubmit()">
+  <div class="selector-row"></div>
   <div class="selector-row">
     <mat-form-field class="selector">
       <mat-label>Inhale duration (sec)</mat-label>
@@ -7,6 +8,9 @@
         class="right"
         matInput
         type="number"
+        min="0.001"
+        step="any"
+        (blur)="onBlur($event)"
       />
     </mat-form-field>
     <mat-form-field class="selector">
@@ -16,6 +20,8 @@
         class="right"
         matInput
         type="number"
+        min="0"
+        (blur)="onBlur($event)"
       />
     </mat-form-field>
     <mat-form-field class="selector">
@@ -25,6 +31,9 @@
         class="right"
         matInput
         type="number"
+        min="0.001"
+        step="any"
+        (blur)="onBlur($event)"
       />
     </mat-form-field>
     <mat-form-field class="selector">
@@ -34,6 +43,8 @@
         class="right"
         matInput
         type="number"
+        min="0"
+        (blur)="onBlur($event)"
       />
     </mat-form-field>
   </div>

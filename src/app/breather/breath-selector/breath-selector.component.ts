@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class BreathSelectorComponent {
   @Output() selectedBreath = new EventEmitter<BreathParameters>();
+
   public breathSelectorForm = new FormGroup({
     inhaleTime: new FormControl(null, Validators.required),
     inhaleHoldTime: new FormControl(null),
@@ -17,10 +18,16 @@ export class BreathSelectorComponent {
   });
   public selected: boolean = false;
 
+  public onBlur(event: any) {
+    if (!event.target.value) {
+      event.target.value = null;
+    } else if (event.target.value < 0) {
+      event.target.value = Math.abs(event.target.value);
+    }
+  }
   public onSubmit() {
     const selectedBreath = this.breathSelectorForm
       .value as unknown as BreathParameters;
-    console.warn(selectedBreath);
     this.selectedBreath.emit(selectedBreath);
     this.selected = true;
   }
